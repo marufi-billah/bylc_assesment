@@ -16,7 +16,7 @@ class AuthController extends Controller
     public function register(){
         return view("register");
     }
-    public function login(Rrequest $request){
+    public function login(Request $request){
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
@@ -24,7 +24,7 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if(Auth::attempt($credentials, $request->remember)){
-            return redirect()->intended('dashboard')-withSuccess('Signed In');
+            return redirect()->intended('dashboard')->withSuccess('Signed In');
         }
 
         return redirect('login')->withSuccess('Invalid login details');
@@ -35,6 +35,7 @@ class AuthController extends Controller
             'email' => 'required|email|unique:users',
             'phone' => 'required|regex:/(01)[0-9]{9}/',
             'password' => 'required|min:6',
+            'agreement' => 'accepted',
         ]);
         $data = $request->only('name', 'email', 'phone', 'password');
         $check = $this->create($data);

@@ -61,6 +61,33 @@ h1, h2, h3,h4, h5, h6{
 .login-card .card-link a:hover, .register-card .card-link a:hover{
     text-decoration: underline;
 }
+.user-tab{
+    margin-top: 30px;
+}
+.user-tab .nav-tabs{
+    border-color: #aaaaaa;
+}
+.user-tab .nav-tabs .nav-item, .user-tab .nav-tabs .active{
+    background-color: transparent;
+    border-color: transparent;
+}
+.user-tab .nav-tabs .nav-item .nav-link:not(.active):hover{
+    border-color: transparent;
+    background-color: #333333;
+}
+.user-tab .nav-tabs .active{
+    background-color: #aaaaaa;
+}
+.user-tab .nav-tabs .nav-item a{
+    color: white;
+}
+.user-tab .nav-tabs .nav-item a.active{
+    color: black;
+}
+.dashboard-clock{
+    width: 100%;
+    text-align: center;
+}
 .footer-credit{
     position:fixed;
     bottom: 0px;
