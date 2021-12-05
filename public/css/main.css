@@ -32,6 +32,35 @@ h1, h2, h3,h4, h5, h6{
     text-align: center;
     color: #aaaaaa;
 }
+.login-card, .register-card{
+    max-width: 400px;
+    margin: auto;
+    margin-top: 150px;
+    background-color: #111111;
+    box-shadow: 0 0 20px #555555;
+}
+.login-card input, .register-card input{
+    background-color: transparent;
+    color: white;
+    border-color: transparent;
+    box-shadow: 0 0 2px white;
+}
+.login-card input:focus, .register-card input:focus{
+    background-color: transparent;
+    color: white;
+    border-color: white;
+    box-shadow: 0 0 2px white;
+}
+.login-card .card-link, .register-card .card-link{
+    margin-top: 15px;
+}
+.login-card .card-link a, .register-card .card-link a{
+    color: white;
+    text-decoration: none;
+}
+.login-card .card-link a:hover, .register-card .card-link a:hover{
+    text-decoration: underline;
+}
 .footer-credit{
     position:fixed;
     bottom: 0px;
