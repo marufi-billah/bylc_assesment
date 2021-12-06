@@ -30,3 +30,6 @@ Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
 Route::get('profile_delete', [AuthController::class, 'profileDelete'])->name('profile_delete');
 Route::get('customer', [UserController::class, 'customerView'])->name('customer');
 Route::get('employee', [UserController::class, 'employeeView'])->name('employee');
+Route::post('archive_user', [UserController::class, 'archiveUser'])->name('archive_user');
+Route::get('user_edit/{user_id}', [UserController::class, 'userEdit'])->name('user_edit');
+Route::post('user_edit/{user_id}', [UserController::class, 'userSave'])->name('user_save');

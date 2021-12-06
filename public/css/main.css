@@ -124,6 +124,37 @@ h1, h2, h3,h4, h5, h6{
 .profile-edit-container .profile-save-buttons{
     float: right;
 }
+.user-table{
+    margin: 30px 10px;
+}
+.pagination{
+    justify-content: center;
+}
+.pagination > li > a{
+    background-color: transparent;
+    color: white;
+    border-color: #333333;
+}
+.pagination > li > a:focus,
+.pagination > li > a:hover,
+.pagination > li > span:focus,
+.pagination > li > span:hover{
+    color: white;
+    background-color: #444444;
+    border-color: #555555;
+}
+
+.pagination > .active .page-link{
+    color: white;
+    background-color: #555555;
+    border-color: #555555;
+}
+
+.pagination > .page-item.disabled .page-link{
+    color: white;
+    background-color: #555555;
+    border-color: #555555;
+}
 .footer-credit{
     position:fixed;
     bottom: 0px;

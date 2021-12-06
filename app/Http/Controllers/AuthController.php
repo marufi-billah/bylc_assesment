@@ -24,6 +24,10 @@ class AuthController extends Controller
 
         $credentials = $request->only('email', 'password');
         if(Auth::attempt($credentials, $request->remember)){
+            if(Auth::user()->status == 'archive'){
+                $this->signOut();
+                return redirect('login')->withSuccess('Your customer account archived');
+            }
             return redirect()->intended('dashboard')->withSuccess('Signed In');
         }
 
@@ -96,8 +100,8 @@ class AuthController extends Controller
             ]);
             $user->name = $request->name;
             $user->phone = $request->phone;
-            $user->password = $request->password;
-            $user->description = Hash::make($request->description);
+            $user->password = Hash::make($request->password);
+            $user->description = $request->description;
 
             $user->save();
             return redirect('profile')->withSuccess('Profile saved successfully');
