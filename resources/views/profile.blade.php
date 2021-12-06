@@ -3,29 +3,41 @@
         <x-header></x-header>
     </x-slot>
     <div class="row user-tab">
-        <x-user-tabs></x-user-tabs>
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link active" area-current="page" href="{{ route('profile') }}">Profile</a>
+            </li>
+        </ul>
         <div class="dashboard-clock">
             <b>Time:</b> 
             <span id="real-time"></span>
         </div>
-        <div class="dashboard-welcome">
-            <h4>Welcome <b><em>{{ $user->name }}</em></b> to BYLC assesment portal.</h4>
-        </div>
-        <div class="dashboard-stat-table">
+        <div class="profile-details-table">
             <table class="table table-dark table-striped">
-                @if($user->role == 'employee' || $user->role == 'admin')
                 <tr>
-                    <th>Total Customer</th>
-                    <td>{{ $customer_count }}</td>
+                    <th>Name</th>
+                    <td>{{ $user->name }}</td>
                 </tr>
-                @endif
-                @if($user->role == 'admin')
                 <tr>
-                    <th>Total Employee</th>
-                    <td>{{ $employee_count }}</td>
+                    <th>Email</th>
+                    <td>{{ $user->email }}</td>
                 </tr>
-                @endif
+                <tr>
+                    <th>Phone</th>
+                    <td>{{ $user->phone }}</td>
+                </tr>
+                <tr>
+                    <th>Description</th>
+                    <td>{{ $user->description }}</td>
+                </tr>
             </table>
+            @if($user->role == 'customer')
+            <a class="btn btn-danger" href="{{ route('profile_delete') }}">Delete account</a>
+            @endif
+            <a class="btn btn-success btn-profile-edit" href="{{ route('profile_edit') }}">Edit Profile</a>
         </div>
     </div>
     <x-slot name="footer">

@@ -54,7 +54,53 @@ class AuthController extends Controller
 
     public function dashboard(){
         if(Auth::check()){
-            return view('dashboard');
+            $user = Auth::user();
+            $customer_count = User::where('role', 'customer')->count();
+            $employee_count = User::where('role', 'employee')->count();
+            return view('dashboard')
+            -> with('user', $user)
+            -> with('customer_count', $customer_count)
+            -> with('employee_count', $employee_count);
+        }
+
+        return redirect('login')->withSuccess('You are not allowed to access the page');
+    }
+    public function profile(){
+        if(Auth::check()){
+            $user = Auth::user();
+            return view('profile')
+            -> with('user', $user);
+        }
+
+        return redirect('login')->withSuccess('You are not allowed to access the page');
+    }
+    public function profileEdit(){
+        if(Auth::check()){
+            $user = Auth::user();
+            return view('profile_edit')
+            -> with('user', $user);
+        }
+
+        return redirect('login')->withSuccess('You are not allowed to access the page');
+    }
+
+    public function profileSave(Request $request){
+        if(Auth::check()){
+            $user = Auth::user();
+            $request->validate([
+                'name' => 'required|min:3',
+                'email' => 'required|email',
+                'phone' => 'required|regex:/(01)[0-9]{9}/',
+                'password' => 'required|min:6',
+                'description' => 'required|min:5',
+            ]);
+            $user->name = $request->name;
+            $user->phone = $request->phone;
+            $user->password = $request->password;
+            $user->description = Hash::make($request->description);
+
+            $user->save();
+            return redirect('profile')->withSuccess('Profile saved successfully');
         }
 
         return redirect('login')->withSuccess('You are not allowed to access the page');
@@ -65,5 +111,14 @@ class AuthController extends Controller
         Auth::logout();
 
         return redirect('login');
+    }
+
+    public function profileDelete(){
+        if(Auth::check()){
+            $user = Auth::user();
+            $user->delete();
+            $this->signout();
+        }
+        return redirect('login')->withSuccess('You are not allowed to access the page');
     }
 }
