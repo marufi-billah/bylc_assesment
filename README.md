@@ -1,5 +1,5 @@
 # About
-This assesment project is developed for BYLC according to provide SRS.
+This assesment project is developed for BYLC according to provided SRS.
 
 # Installation
 * Make sure your device has all package installed required by Laravel project. For more info: [Laravel Installatin Guide](https://laravel.com/docs/8.x/installation)
