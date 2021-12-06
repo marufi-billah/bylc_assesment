@@ -3,7 +3,7 @@
         <x-header></x-header>
     </x-slot>
     <div class="row user-tab">
-        <x-user-tabs></x-user-tabs>
+        <x-user-tabs active="dashboard" :user="$user"></x-user-tabs>
         <div class="dashboard-clock">
             <b>Time:</b> 
             <span id="real-time"></span>

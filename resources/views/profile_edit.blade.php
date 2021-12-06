@@ -3,14 +3,7 @@
         <x-header></x-header>
     </x-slot>
     <div class="row user-tab">
-        <ul class="nav nav-tabs">
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('dashboard') }}">Dashboard</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link active" area-current="page" href="{{ route('profile') }}">Profile</a>
-            </li>
-        </ul>
+        <x-user-tabs active="profile" :user="$user"></x-user-tabs>
         <div class="dashboard-clock">
             <b>Time:</b> 
             <span id="real-time"></span>

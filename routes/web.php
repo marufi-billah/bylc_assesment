@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -27,3 +28,5 @@ Route::get('profile_edit', [AuthController::class, 'profileEdit'])->name('profil
 Route::post('profile_edit', [AuthController::class, 'profileSave'])->name('profile_save');
 Route::get('signout', [AuthController::class, 'signOut'])->name('signout');
 Route::get('profile_delete', [AuthController::class, 'profileDelete'])->name('profile_delete');
+Route::get('customer', [UserController::class, 'customerView'])->name('customer');
+Route::get('employee', [UserController::class, 'employeeView'])->name('employee');

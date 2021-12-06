@@ -4,16 +4,21 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class user-tabs extends Component
+class UserTabs extends Component
 {
+
+    public $active;
+    public $user;
+
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($active, $user)
     {
-        //
+        $this->active = $active;
+        $this->user = $user;
     }
 
     /**
