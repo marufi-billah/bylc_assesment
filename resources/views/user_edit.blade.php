@@ -3,7 +3,11 @@
         <x-header></x-header>
     </x-slot>
     <div class="row user-tab">
+        @if($user->role == 'customer')
         <x-user-tabs active="customer" :user="$admin"></x-user-tabs>
+        @elseif($user->role == 'employee')
+        <x-user-tabs active="employee" :user="$admin"></x-user-tabs>
+        @endif
         <div class="profile-edit-container">
             <form method="POST" action="{{ route('user_edit', ['user_id'=>$user->id]) }}">
                 @csrf

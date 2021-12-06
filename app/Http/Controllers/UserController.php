@@ -65,8 +65,11 @@ class UserController extends Controller
     public function employeeView(){
         if(Auth::check()){
             $user = Auth::user();
+            $customers = User::where('role', 'employee')->paginate(15);
             if($user->role == 'admin')
-                return view('employee')->with('user', $user);
+                return view('customer')
+                ->with('user', $user)
+                ->with('customers', $customers);
         }
         return redirect('login')->withSuccess('You are not allowed to access the page');
     }
@@ -83,6 +86,18 @@ class UserController extends Controller
                 }
 
                 $user->save();
+                return Redirect::back()->withSuccess("Customer archived successfully");
+            }
+        }
+        return redirect($request->url())->withSuccess("Your are not allowed to perform this operation");
+    }
+
+    public function deleteUser(Request $request){
+        if(Auth::check()){
+            $employee = Auth::user();
+            if($employee->role == 'admin'){
+                $user = User::find($request->customer_id);
+                $user->delete();
                 return Redirect::back()->withSuccess("Customer archived successfully");
             }
         }
