@@ -36,6 +36,12 @@
                             @endif
                         </div>
                         <div class="form-group mb-3">
+                            <input type="password" placeholder="Confirm Password" id="confirm_password" class="form-control" name="password_confirmation" required>
+                            @if($errors->has('confirm_password'))
+                            <span class="text-danger">{{ $errors->first('confirm_password') }}</span>
+                            @endif
+                        </div>
+                        <div class="form-group mb-3">
                             <div class="checkbox">
                                 <lavel>
                                     <input type="checkbox" name="agreement"> I agree to the terms and conditions

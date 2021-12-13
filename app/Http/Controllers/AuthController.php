@@ -38,12 +38,13 @@ class AuthController extends Controller
             'name' => 'required|min:3',
             'email' => 'required|email|unique:users',
             'phone' => 'required|regex:/(01)[0-9]{9}/',
-            'password' => 'required|min:6',
+            'password' => 'min:6|required_with:password_confirmation|same:password_confirmation|regex:/([A-Za-z0-9])/',
+            'password_confirmation' => 'min:6',
             'agreement' => 'accepted',
         ]);
-        $data = $request->only('name', 'email', 'phone', 'password');
-        $check = $this->create($data);
-        return redirect('dashboard')->withSuccess('You have signed in');
+            $data = $request->only('name', 'email', 'phone', 'password');
+            $check = $this->create($data);
+            return redirect('dashboard')->withSuccess('You have signed in');
     }
     private function create(array $data){
         return User::create([
